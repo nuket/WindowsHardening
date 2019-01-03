@@ -8,7 +8,7 @@ Unfortunately, both of these things need to be treated adversarially with a hard
 
 Any tips and well-composed content that people would like to add to this document via issues + pull requests would be greatly appreciated!
 
-Or you can Direct Message suggestions to https://twitter.com/vilimpoc[@vilimpoc].
+Or you can Direct Message suggestions to https://twitter.com/vilimpoc[@vilimpoc] or drop me an e-mail https://vilimpoc.org/contact.php[here].
 
 == Audience
 
@@ -112,7 +112,7 @@ ____
 Does that sound like a home computer setup?
 * _Work Folders Client_ would be useful if I had a laptop that connected to a corporate network. But I don't, so it can go. Also, there are tons of alternative file syncing systems (Dropbox, Box, Google Drive, etc.) that have assumed this role in the modern workplace.
 
-=== Do Not Install 3rd Party Antivirus
+=== Do Not Install Third-Party Antivirus
 
 Installing antivirus software like McAfee, Kaspersky, or Avira will cause your computer to slow down without necessarily providing better coverage than Windows Defender. (As it turns out, Windows Defender is already chews up a significant amount of time scanning your system.)
 
@@ -178,24 +178,123 @@ Make sure to save a copy of the BitLocker Recovery Key, or print a physical copy
 
 === Update UEFI Firmware / BIOS Firmware
 
-UEFI () / BIOS () is the earliest code that runs on a computer to start it up, before the Windows operating system takes over.
+UEFI (https://en.wikipedia.org/wiki/Unified_Extensible_Firmware_Interface[Unified Extensible Firmware Interface]) / BIOS (https://en.wikipedia.org/wiki/BIOS[Basic Input/Output System]) firmware is the earliest code that runs on a computer to start it up, before the Windows operating system takes over.
 
-It is important to update firmware, because certain security features of a system can only be enabled when this software is up-to-date.
+It is very important to update firmware, because certain security features of a system can only be enabled when this software is up-to-date.
 
 [cols='1a,1a']
 |===
 
-|Release Notes
-|Release Notes
-
-|image::uefi-version-lenovo-prepatch.png[title='Old version of firmware (2.67, 9 September 2016)']
-|
+|image::uefi-version-lenovo-prepatch.png[title='Old Lenovo firmware (2.67, 9 September 2016)']
+|-
 
 |image::uefi-update-thinkpad-x230.png[title='Patching a Lenovo Thinkpad X230 with the latest firmware version.']
 |image::uefi-update-optiplex-7010.png[title='Patching a Dell Optiplex 7010 with the latest firmware version.']
 
-|image::uefi-version-lenovo-postpatch.png[title='New version of firmware (2.74, )']
-|
+|image::uefi-version-lenovo-postpatch.png[title='Updated Lenovo firmware (2.74, 14 November 2018)']
+|image::uefi-version-dell-postpatch.png[title='Updated Dell firmware (A29, 28 June 2018)']
+
+2+|
+....
+Lenovo Release Notes
+
+<2.74>
+ UEFI: 2.74 / ECP: 1.14
+- [Important] Update includes a security fix.
+- (Fix) Fixed an issue where BIOS silent update might fail with system account.
+
+<2.73>
+ UEFI: 2.73 / ECP: 1.14
+-[Important] Security fix addresses LEN-22133 Speculative Execution Side Channel
+             Variants 4 and 3a (CVE-2018-3639, CVE-2018-3640). Refer to Lenovo's
+             Security Advisory page for additional information.
+             (https://support.lenovo.com/product_security/home)
+
+[...]
+
+VERSION INFORMATION
+
+  The following versions of UEFI BIOS and ECP (Embedded Controller Program) have
+  been released to date.
+
+  Package  (ID)     UEFI BIOS  (BIOS ID)   ECP  (ECP ID)       Rev.  Issue Date
+  ----------------  ---------------------  ----------------    ----  ----------
+  2.74  (G2UJ30US)  2.74  (G2ETB4WW)       1.14  (G2HT35WW)    01    2018/11/30
+  2.73  (G2UJ29US)  2.73  (G2ETB3WW)       1.14  (G2HT35WW)    01    2018/06/25
+  2.72  (G2UJ28US)  2.72  (G2ETB2WW)       1.14  (G2HT35WW)    01    2018/04/19
+  2.71  (G2UJ27US)  2.71  (G2ETB1WW)       1.14  (G2HT35WW)    01    2018/03/12
+  2.70  (G2UJ26US)  2.70  (G2ETB0WW)       1.14  (G2HT35WW)    01    2017/10/03
+  2.68  (G2UJ25US)  2.68  (G2ETA8WW)       1.14  (G2HT35WW)    01    2017/04/28
+  2.67  (G2UJ24US)  2.67  (G2ETA7WW)       1.14  (G2HT35WW)    01    2016/09/21
+  2.66  (G2UJ23US)  2.66  (G2ETA6WW)       1.14  (G2HT35WW)    01    2016/03/23
+  2.65  (G2UJ22US)  2.65  (G2ETA5WW)       1.14  (G2HT35WW)    01    2015/10/02
+  2.64  (G2UJ21US)  2.64  (G2ETA4WW)       1.14  (G2HT35WW)    02    2015/07/07
+  2.64  (G2UJ21US)  2.64  (G2ETA4WW)       1.14  (G2HT35WW)    01    2015/04/29
+  2.63  (G2UJ20US)  2.63  (G2ETA3WW)       1.14  (G2HT35WW)    01    2015/02/16
+  2.62  (G2UJ19US)  2.62  (G2ETA2WW)       1.14  (G2HT35WW)    01    2014/09/30
+  2.61  (G2UJ18US)  2.61  (G2ETA1WW)       1.14  (G2HT35WW)    01    2014/05/12
+  2.60  (G2UJ17US)  2.60  (G2ETA0WW)       1.13  (G2HT34WW)    01    2014/03/14
+  2.59  (G2UJ16US)  2.59  (G2ET99WW)       1.13  (G2HT34WW)    01    2013/12/13
+  2.57  (G2UJ15US)  2.57  (G2ET97WW)       1.13  (G2HT34WW)    01    2013/11/12
+  2.56  (G2UJ14US)  2.56  (G2ET96WW)       1.12  (G2HT33WW)    02    2013/11/04
+  2.56  (G2UJ14US)  2.56  (G2ET96WW)       1.12  (G2HT33WW)    01    2013/09/09
+  2.55  (G2UJ13US)  2.55  (G2ET95WW)       1.12  (G2HT33WW)    01    2013/07/23
+  2.54  (G2UJ12US)  2.54  (G2ET94WW)       1.12  (G2HT33WW)    01    2013/05/08
+  2.52  (G2UJ11US)  2.52  (G2ET92WW)       1.10  (G2HT31WW)    01    2013/03/11
+  2.51  (G2UJ10US)  2.51  (G2ET91WW)       1.10  (G2HT31WW)    01    2013/01/18
+  2.50  (G2UJ09US)  2.50  (G2ET90WW)       1.10  (G2HT31WW)    01    2013/01/11
+  2.06  (G2UJ08US)  2.06  (G2ET86WW)       1.10  (G2HT31WW)    01    2012/11/27
+  2.02  (G2UJ07US)  2.02  (G2ET82WW)       1.10  (G2HT31WW)    01    2012/09/18
+  1.13  (G2UJ06US)  1.13  (G2ET33WW)       1.09  (G2HT30WW)    01    2012/08/10
+  1.12  (G2UJ05US)  1.12  (G2ET32WW)       1.09  (G2HT30WW)    01    2012/06/21
+  1.11  (G2UJ04US)  1.11  (G2ET31WW)       1.07  (G2HT28WW)    01    2012/05/29
+  1.10  (G2UJ03US)  1.10  (G2ET30WW)       1.07  (G2HT28WW)    01    2012/05/25
+  1.09  (G2UJ02US)  1.09  (G2ET29WW)       1.07  (G2HT28WW)    01    2012/05/14
+....
+
+2+|
+....
+Dell Release Notes
+
+Dell OptiPlex 7010 System BIOS
+
+This package provides the BIOS update for Dell OptiPlex 7010 running in the following Operating Systems: Windows and DOS.
+
+Fixes & Enhancements
+
+Fixes
+- Updated CPU microcode to address security advisory Intel Security Advisory INTEL-SA-00115 (CVE-2018-3639 & CVE-2018-3640).
+- Addressed remote control cannot find Video setup option.
+
+Enhancements
+- Improved OS installation from USB.
+
+Version
+Version A29, A29
+
+[...]
+
+Version    Release Date    Importance
+A28        14 Mar 2018     Urgent
+A26        09 Jan 2018     Urgent
+A25        22 May 2017     Urgent
+A24        12 Dec 2016     Recommended
+A23        25 Aug 2016     Recommended
+A22        20 Jul 2016     Optional
+A21        03 Feb 2016     Recommended
+A20        05 Feb 2015     Urgent
+A19        18 Nov 2014     Recommended
+A18        05 Jun 2014     Recommended
+A16        16 Oct 2013     Recommended
+A15        23 Sep 2013     Recommended
+A14        11 Jul 2013     Recommended
+A13        20 May 2013     Recommended
+A12        25 Jan 2013     Recommended
+A09        26 Oct 2012     Recommended
+A05        03 Aug 2012     Recommended
+A04        13 Jul 2012     Optional
+A01        05 Jun 2012     Recommended
+....
 
 |===
 
@@ -210,14 +309,19 @@ The program prints a list of the applied mitigations, and importantly whether th
 [cols='1a,1a']
 |===
 
-|image::specucheck-output-3320m.png[title='SpecuCheck output from i5-3320m on Windows 1809 and a fully-patched Thinkpad X230']
-|image::specucheck-output-3770.png[title='SpecuCheck output from i7-3770 on Windows 1809 and a fully-patched Optiplex 7010']
+|image::specucheck-output-3320m-2.67.png[title='SpecuCheck output from i5-3320m on Windows 1809 and a Thinkpad X230 with firmware v2.67']
+|-
 
-A shout-out to Dell, https://support.dell.com[whose support engineers] updated the firmware microcode for my 5-year old desktop machine to address these issues. Thanks!
+|image::specucheck-output-3320m-2.74.png[title='SpecuCheck output from i5-3320m on Windows 1809 and a fully-patched Thinkpad X230 with firmware v2.74]
+
+Notice how the mitigations slightly improve after the firmware update!
+|image::specucheck-output-3770.png[title='SpecuCheck output from i7-3770 on Windows 1809 and a fully-patched Optiplex 7010 with firmware A29']
 
 |===
 
 Because they are hardware vulnerabilities and haven't yet been completely fixed by the main CPU makers, and because hardware replacement cycles are longer than they used to be, these issues will be around for a while.
+
+Kudos to https://support.dell.com[Dell] and https://pcsupport.lenovo.com/[Lenovo], whose engineers updated the firmware microcode for my 5+ year-old laptop and desktop machines to address these issues. Talk about _good support_!
 
 == Hardening Chrome
 
@@ -237,11 +341,11 @@ Here's how to disable these tracking cookies:
 
 video::block-third-party-cookies.mp4[width=832, height=640]
 
-= Contributors
+== Contributors
 
 Max Vilimpoc (https://twitter.com/vilimpoc[@vilimpoc])
 
-// = Other Ideas (For Later Writeup)
+// = Other Ideas (for Later Writeup)
 //
 // Windows
 // * Using a VPN (Virtual Private Network)
