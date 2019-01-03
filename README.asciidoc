@@ -298,6 +298,10 @@ A01        05 Jun 2012     Recommended
 
 |===
 
+As you can see from the Dell and Lenovo Release Notes, there are a ton of changes to the lowest-level firmware over the multiyear lifecycle of a computer.
+
+Although some of these patches may be more important than others, it is recommended to apply them regularly.
+
 === Check Spectre and Meltdown Fixes
 
 https://en.wikipedia.org/wiki/Spectre_(security_vulnerability)[Spectre] and https://en.wikipedia.org/wiki/Meltdown_(security_vulnerability)[Meltdown] are a category of hardware design flaws on Intel, AMD, and Arm processors that can lead to remotely-triggered exploits, information stealing, and so on.
