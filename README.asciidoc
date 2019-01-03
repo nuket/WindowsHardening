@@ -1,0 +1,253 @@
+= Windows and Chrome Hardening
+
+:imagesdir: images
+
+A collection of tips and scripts to harden your Windows computer and Chrome browser against attackers.
+
+Unfortunately, both of these things need to be treated adversarially with a hardened security posture.
+
+Any tips and well-composed content that people would like to add to this document via issues + pull requests would be greatly appreciated!
+
+Or you can Direct Message suggestions to https://twitter.com/vilimpoc[@vilimpoc].
+
+== Audience
+
+This guide is written specifically with Windows 10 Version 1809 (October 2018 Update) in mind and will be updated as newer versions are released.
+
+If you're not running the latest version of Windows 10 on your system, then you aren't applying the latest security patches and kernel mitigations designed to keep you out of trouble, particularly against https://en.wikipedia.org/wiki/Spectre_(security_vulnerability)[Spectre] and https://en.wikipedia.org/wiki/Meltdown_(security_vulnerability)[Meltdown].
+
+Also, newer versions of Windows 10 tend to have better performance and lower UX latency, so why not update?
+
+== Hardening Windows
+
+There are too many security-relevant settings to count in Windows, but here are a few that are easily configured.
+
+=== Create and Use a Standard User Account
+
+Windows uses "two" types of primary accounts, Administrator and Standard User.
+
+_Administrator_ accounts are the ones that can do anything to your computer. They can install software, change firewall settings, delete any and all files, and make permanent changes to the system configuration that affect every user.
+
+It makes no sense to use an Administrator account for everything you do, and it's a shame that Microsoft _still_ defaults to creating Administrator accounts first when installing Windows. _This is like running with scissors._ (And, to be fair, Apple still does this too.)
+
+If your computer has only one account on it, then by default, Microsoft made this an Administrator account.
+
+_Standard User_ accounts cannot make permanent or fundamental changes to the operating system that threaten a computer's ability to boot and run. They can't delete system files or access files from other users.
+
+This type of account should be used for day to day work and add an extra layer of security against malware getting a deep hold in your system.
+
+Obnoxiously, Microsoft makes it as hard as they possibly can to create a non-online, standard user account.
+
+It's more like opt-out than opt-in, which is annoying and you have to jump through multiple dialog boxes to skip this.
+
+image::add-user-1.png[Add User 1]
+
+It's almost deceptive, and mildly irritating, as they don't state upfront how to create an account that isn't linked to them. Like, _I don't know my friend's email address, sorry._
+
+The account creation process is worded in such a way that it sounds like you're doing something wrong if you don't provide an email address to Microsoft. 🤷
+
+image::add-user-2.png[Add User 2]
+
+No, I don't want to log in with a Microsoft account or create a new one that Microsoft gets to know about.
+
+image::add-user-3.png[Add User 3]
+
+No, I don't want to have my home computer linked to their advertising backend.
+
+In any case, once you jump through the hoops, the local, standard user account is created in the following screen.
+
+image::add-user-4.png[Add User 4]
+
+Once the Standard User account is created, its settings can be seen by clicking on it.
+
+Note that only the accounts created after the first account on a computer are made __Standard User__s.
+
+image::add-user-5.png[Add User 5]
+
+=== Pump Up User Account Control
+
+User Account Control is what shows the full-screen pop-up window when you install new software or make changes in the Windows Control Panel or Settings app. It's gotten much less intrusive since Windows Vista.
+
+// Add picture of UAC dialog in a VM.
+
+What it does: Any time you want to do something potentially dangerous to the computer, the Windows kernel will wait until it can confirm that you, as the super-user of the computer, want to do this.
+
+Make sure this is set to "Always notify".
+
+image::user-account-control.png[User Account Control Panel]
+
+=== Remove Internet Explorer 11 (and other Optional Windows Features)
+
+If you're not using a computer with corporate websites (the crappy internal websites that companies never pay to upgrade, thereby dragging down the whole web, and inflicting uncounted suffering on the worker bees), then it makes sense to completely remove Internet Explorer from Windows.
+
+image::turn-windows-features-on-or-off-crop.png[Windows Features Shortcut]
+
+To do that, open up the Windows Features list.
+
+image::windows-features-list.png[Windows Features List]
+
+Uncheck _Internet Explorer 11_ and click OK.
+
+Other unnecessary Windows features (uncheck to remove):
+
+* _Microsoft XPS Document Writer_ creates a virtual printer that you can "print" to, which then writes the output as an XPS file.
++
+Who actually uses this?
++
+Use PDF like everyone else. I don't think there's a single home user that would use this, but if it's enabled, there is code running on your computer that you don't need.
+* _Windows Fax and Scan_ -- Who faxes or scans anymore?
++
+The "scan" portion of that is more relevant, but if you don't have one, get rid of this.
+* _Remote Differential Compression API Support_ is a Windows-specific API and it is unclear what software uses it at all.
+* _SMB Direct_ is a Windows-specific technology used to increase data transfer speeds in corporate networks. This is not a technology you'll likely need on a home laptop.
++
+[quote, 'https://docs.microsoft.com/en-us/windows-server/storage/file-server/smb-direct[Microsoft Documentation]']
+____
+SMB Direct requires the following:
+
+* At least two computers running Windows Server 2012 R2 or Windows Server 2012
+* One or more network adapters with RDMA capability.
+____
++
+Does that sound like a home computer setup?
+* _Work Folders Client_ would be useful if I had a laptop that connected to a corporate network. But I don't, so it can go. Also, there are tons of alternative file syncing systems (Dropbox, Box, Google Drive, etc.) that have assumed this role in the modern workplace.
+
+=== Do Not Install 3rd Party Antivirus
+
+Installing antivirus software like McAfee, Kaspersky, or Avira will cause your computer to slow down without necessarily providing better coverage than Windows Defender. (As it turns out, Windows Defender is already chews up a significant amount of time scanning your system.)
+
+Also, these 3rd-party antivirus providers may increase your attack surface area with more code, which is irregularly updated and possibly even faulty.
+
+There have definitely been cases where antivirus vendors hooking into undocumented Windows kernel interfaces actually made a system less secure (which led to Microsoft introducing https://en.wikipedia.org/wiki/Kernel_Patch_Protection[PatchGuard]).
+
+=== Enable Secure Boot
+
+Secure Boot ensures that your computer is running only trusted, signed firmware from the moment it turns on to the moment that it hands control of the hardware over to the Windows operating system.
+
+It does this by instrumenting all changes to the system and attesting to the integrity of the core system components.
+
+Certain 3rd-party add-ons, specifically graphics cards, may not have signed UEFI (Unified Extensible Firmware Interface) drivers. If you have one of these add-ons, you may not have a functional Secure Boot.
+
+(This is the case on a Dell Optiplex system I own, that originally had an extra AMD Radeon graphics card. After removing the add-in card, the CPU-internal Intel HD Graphics unit took over and Secure Boot worked again.)
+
+image::windows-security.png[Windows Security Settings]
+
+Some things to note here:
+
+* _Core isolation_ is good, and sometimes you can turn on "Memory Integrity", but I've had problems with this causing Blue Screens of Death.
++
+image::core-isolation-details.png[Core Isolation Details]
++
+Microsoft explains what core isolation does https://docs.microsoft.com/en-us/windows/security/threat-protection/windows-defender-exploit-guard/enable-virtualization-based-protection-of-code-integrity=windows-security-app[here].
++
+In a nutshell, core isolation uses virtualization technology to strictly control access to kernel memory by hardware drivers and other software components, essentially putting the kernel into a different privilege level than the drivers and surrounding it with hardware-enforced defenses against modification.
++
+It would be excellent if the underlying remaining issues that cause it to be disabled by default could be fixed by requiring hypervisor-enforced code integrity checks in the Windows Hardware Qualification Labs (WHQL) certification process and validated in the field with Windows telemetry.
++
+It would be good for everyone to require manufacturers to produce higher quality drivers that don't trip kernel faults.
+* _Security Processor_ -- Having a Trusted Platform Module is good.
++
+image::security-processor-details.png[Security Processor Details]
+
+=== Hypervisor-Protected Code Integrity (HVCI)
+
+The Windows System Information program shows a few key settings that are security-relevant.
+
+image::hvci-settings.png[System Information]
+
+* _Kernel DMA Protection_ prevents hijacks from malicious Thunderbolt devices, but requires an Intel processor with VT-d technology enabled (Virtualization Technology for Directed I/O).
+
+* _Virtualization-based security_ is controlled by the Core Isolation Memory Integrity settings.
+
+=== Enable BitLocker
+
+BitLocker is used to provide full-disk encryption (FDE) on Windows with hardware-backed key management.
+
+Always enable this for portable computers, this is what it looks like when activated:
+
+image::bitlocker-active.png[BitLocker Active]
+
+I don't have screenshots of the process of activating it, but when enabling it, there is a moment when Windows will ask whether to encrypt:
+
+* only the parts of the drive currently in use
+* the whole drive including empty space
+
+It is a good idea to encrypt everything including empty space, unless you have a good reason not to or you're (re-)installing Windows on a previously-encrypted drive (in which case most of the drive is probably filled with mostly random data anyways).
+
+Make sure to save a copy of the BitLocker Recovery Key, or print a physical copy of it and put it in a safe place. (Yes, this means that someone ransacking your office could find it, but that requires physical access anyways.)
+
+=== Update UEFI Firmware / BIOS Firmware
+
+UEFI () / BIOS () is the earliest code that runs on a computer to start it up, before the Windows operating system takes over.
+
+It is important to update firmware, because certain security features of a system can only be enabled when this software is up-to-date.
+
+[cols='1a,1a']
+|===
+
+|Release Notes
+|Release Notes
+
+|image::uefi-version-lenovo-prepatch.png[title='Old version of firmware (2.67, 9 September 2016)']
+|
+
+|image::uefi-update-thinkpad-x230.png[title='Patching a Lenovo Thinkpad X230 with the latest firmware version.']
+|image::uefi-update-optiplex-7010.png[title='Patching a Dell Optiplex 7010 with the latest firmware version.']
+
+|image::uefi-version-lenovo-postpatch.png[title='New version of firmware (2.74, )']
+|
+
+|===
+
+=== Check Spectre and Meltdown Fixes
+
+https://en.wikipedia.org/wiki/Spectre_(security_vulnerability)[Spectre] and https://en.wikipedia.org/wiki/Meltdown_(security_vulnerability)[Meltdown] are a category of hardware design flaws on Intel, AMD, and Arm processors that can lead to remotely-triggered exploits, information stealing, and so on.
+
+https://github.com/ionescu007/SpecuCheck[SpecuCheck] is a utility from https://twitter.com/aionescu[Alex Ionescu] (one of the grandmasters on the security research scene) that shows how well your system has been patched against these vulnerabilities.
+
+The program prints a list of the applied mitigations, and importantly whether the CPU's microcode has been patched to provide them.
+
+[cols='1a,1a']
+|===
+
+|image::specucheck-output-3320m.png[title='SpecuCheck output from i5-3320m on Windows 1809 and a fully-patched Thinkpad X230']
+|image::specucheck-output-3770.png[title='SpecuCheck output from i7-3770 on Windows 1809 and a fully-patched Optiplex 7010']
+
+A shout-out to Dell, https://support.dell.com[whose support engineers] updated the firmware microcode for my 5-year old desktop machine to address these issues. Thanks!
+
+|===
+
+Because they are hardware vulnerabilities and haven't yet been completely fixed by the main CPU makers, and because hardware replacement cycles are longer than they used to be, these issues will be around for a while.
+
+== Hardening Chrome
+
+=== Blocking Third-Party Cookies
+
+Third-party cookies follow you around the internet. These are the tiny pieces of data that expose you as a targetable, profiled individual online.
+
+They are sent to servers _other_ than the website you're currently browsing, i.e. _nobody who really needs to know_.
+
+These are how Amazon, Google, Facebook, and other advertisers know when to show you an ad for that thing you were just looking at buying.
+
+Let's say you visit Buzzfeed, at least a dozen ad agencies will find out exactly what you did there:
+
+video::blocked-cookies.mp4[width=688, height=736]
+
+Here's how to disable these tracking cookies:
+
+video::block-third-party-cookies.mp4[width=832, height=640]
+
+= Contributors
+
+Max Vilimpoc (https://twitter.com/vilimpoc[@vilimpoc])
+
+// = Other Ideas (For Later Writeup)
+//
+// Windows
+// * Using a VPN (Virtual Private Network)
+// * Using Folder Security
+// * When installing drivers, uncheck "Always accept drivers from X Corp.", as driver signing certificates have been stolen from companies in the past.
+//
+// Chrome
+// Using Multiple User Profiles
+// Ad Blockers
