@@ -339,11 +339,11 @@ These are how Amazon, Google, Facebook, and other advertisers know when to show 
 
 Let's say you visit Buzzfeed, at least a dozen ad agencies will find out exactly what you did there:
 
-video::blocked-cookies.mp4[width=688, height=736]
+video::37w5Iu6MLgM[]
 
 Here's how to disable these tracking cookies:
 
-video::block-third-party-cookies.mp4[width=832, height=640]
+video::EhsUcpivM_I[]
 
 == Contributors
 
