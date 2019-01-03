@@ -339,11 +339,17 @@ These are how Amazon, Google, Facebook, and other advertisers know when to show 
 
 Let's say you visit Buzzfeed, at least a dozen ad agencies will find out exactly what you did there:
 
-video::37w5Iu6MLgM[]
+[link=https://youtu.be/37w5Iu6MLgM]
+image::https://img.youtube.com/vi/37w5Iu6MLgM/0.jpg[]
 
-Here's how to disable these tracking cookies:
+This happens on every single website you visit, so multiply the number of cookies you're generating by a hundred.
 
-video::EhsUcpivM_I[]
+Here's how to disable these web tracking cookies:
+
+[link=https://youtu.be/EhsUcpivM_I]
+image::https://img.youtube.com/vi/EhsUcpivM_I/0.jpg[]
+
+Once the third-party cookies are blocked, the list of cookies per website will drop substantially.
 
 == Contributors
 
@@ -359,3 +365,4 @@ Max Vilimpoc (https://twitter.com/vilimpoc[@vilimpoc])
 // Chrome
 // Using Multiple User Profiles
 // Ad Blockers
+// JS Blockers
