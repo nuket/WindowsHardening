@@ -15,7 +15,7 @@ steps:
     versionSpec: '>= 2.4'
     addToPath: true
 
-- script: gem install asciidoctor-pdf && asciidoctor-pdf -v
+- script: gem install asciidoctor-pdf --pre && asciidoctor-pdf -v
   displayName: 'gem install asciidoctor-pdf'
 
 # - script: echo Hello, world!
