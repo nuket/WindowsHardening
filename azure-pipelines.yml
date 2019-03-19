@@ -18,6 +18,9 @@ steps:
 - script: gem install asciidoctor-pdf --pre && asciidoctor-pdf -v
   displayName: 'gem install asciidoctor-pdf'
 
+- script: asciidoctor-pdf --out-file WindowsHardening.pdf README.asciidoc
+  displayName: 'Generate PDF file from README.asciidoc'
+
 # - script: echo Hello, world!
 #   displayName: 'Run a one-line script'
 
