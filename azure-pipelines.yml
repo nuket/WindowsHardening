@@ -18,8 +18,15 @@ steps:
 - script: gem install asciidoctor-pdf --pre && asciidoctor-pdf -v
   displayName: 'gem install asciidoctor-pdf'
 
-- script: asciidoctor-pdf --out-file WindowsHardening.pdf README.asciidoc
+- script: asciidoctor-pdf --out-file WindowsHardening.pdf README.asciidoc && ls -lR
   displayName: 'Generate PDF file from README.asciidoc'
+
+- powershell: gci env:* | sort-object name | Format-Table -AutoSize | Out-File $env:BUILD_ARTIFACTSTAGINGDIRECTORY/environment-variables.txt
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    artifactName: drop
 
 # - script: echo Hello, world!
 #   displayName: 'Run a one-line script'
