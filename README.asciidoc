@@ -1,5 +1,7 @@
 = Windows and Chrome Hardening
 
+image::https://dev.azure.com/TheUpdateCompany/WindowsHardening/_apis/build/status/nuket.WindowsHardening%20Build%20PDF?branchName=master["Build Status"]
+
 :imagesdir: images
 
 A collection of tips and scripts to harden your Windows computer and Chrome browser against attackers.
@@ -114,7 +116,7 @@ Does that sound like a home computer setup?
 
 === Do Not Install Third-Party Antivirus
 
-Installing antivirus software like McAfee, Kaspersky, or Avira will cause your computer to slow down without necessarily providing better coverage than Windows Defender. (As it turns out, Windows Defender is already chews up a significant amount of time scanning your system.)
+Installing antivirus software like McAfee, Kaspersky, or Avira will cause your computer to slow down without necessarily providing better coverage than Windows Defender. (As it turns out, Windows Defender already chews up a significant amount of time scanning your system.)
 
 Also, these 3rd-party antivirus providers may increase your attack surface area with more code, which is irregularly updated and possibly even faulty.
 
@@ -180,7 +182,7 @@ Make sure to save a copy of the BitLocker Recovery Key, or print a physical copy
 
 UEFI (https://en.wikipedia.org/wiki/Unified_Extensible_Firmware_Interface[Unified Extensible Firmware Interface]) / BIOS (https://en.wikipedia.org/wiki/BIOS[Basic Input/Output System]) firmware is the earliest code that runs on a computer to start it up, before the Windows operating system takes over.
 
-It is very important to update firmware, because certain security features of a system can only be enabled when this software is up-to-date.
+It is very important to update firmware, because certain security features of a system can only be enabled when this software is up-to-date. This will be apparent in the discussion about Spectre and Meltdown.
 
 [cols='1a,1a']
 |===
