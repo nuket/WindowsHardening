@@ -18,7 +18,7 @@ steps:
 - script: gem install asciidoctor-pdf --pre && asciidoctor-pdf -v
   displayName: 'gem install asciidoctor-pdf'
 
-- script: asciidoctor-pdf --out-file WindowsHardening.pdf README.asciidoc && ls -lR
+- script: asciidoctor-pdf --out-file WindowsHardening-$env:BUILD_BUILDNUMBER.pdf README.asciidoc && ls -lR && printenv
   displayName: 'Generate PDF file from README.asciidoc'
 
 # Useful info, that.
@@ -47,13 +47,36 @@ steps:
 #     #parallelCount: # Optional
 
 # Try using Publish Pipeline Artifact task
+# This doesn't work, it also always generates a ZIP file.
 
 # Publish Pipeline Artifact
 # Publish a local directory or file as a named artifact for the current pipeline.
-- task: PublishPipelineArtifact@0
-  inputs:
-    #artifactName: 'drop' 
-    targetPath: WindowsHardening.pdf
+# - task: PublishPipelineArtifact@0
+#   inputs:
+#     #artifactName: 'drop' 
+#     targetPath: WindowsHardening.pdf
+
+# GitHub Release
+# Create, edit, or delete a GitHub release.
+# - task: GitHubRelease@0
+#   inputs:
+#     gitHubConnection: WindowsHardeningGitHub
+#     repositoryName: WindowsHardening
+#     action: 'create'
+#     assets: WindowsHardening.pdf
+#     #action: 'create' # Options: create, edit, delete
+#     #target: '$(Build.SourceVersion)' # Required when action == Create || Action == Edit
+#     #tagSource: 'auto' # Required when action == Create# Options: auto, manual
+#     #tag: # Required when action == Edit || Action == Delete || TagSource == Manual
+#     #title: # Optional
+#     #releaseNotesSource: 'file' # Optional. Options: file, input
+#     #releaseNotesFile: # Optional
+#     #releaseNotes: # Optional
+#     #assets: '$(Build.ArtifactStagingDirectory)/*' # Optional
+#     #assetUploadMode: 'delete' # Optional. Options: delete, replace
+#     #isDraft: false # Optional
+#     #isPreRelease: false # Optional
+#     #addChangeLog: true # Optional
 
 # - script: echo Hello, world!
 #   displayName: 'Run a one-line script'
