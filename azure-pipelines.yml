@@ -37,17 +37,18 @@ steps:
 - script: pwd && ls -lR
   displayName: 'Print build environment (again)'
 
-# GitHub Release
-# Create, edit, or delete a GitHub release.
-# - task: GitHubRelease@0
-#   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
-#   inputs:
-#     gitHubConnection: WindowsHardeningGitHub
-#     repositoryName: nuket/WindowsHardening
-#     tagSource: 'manual'
-#     tag: '$(Build.BuildNumber)'
-#     title: 'Windows Hardening PDF Release ($(Build.BuildNumber))'
-#     assets: 'WindowsHardening-$(Build.BuildNumber).pdf'
+GitHub Release
+Create, edit, or delete a GitHub release.
+- task: GitHubRelease@0
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+  inputs:
+    gitHubConnection: WindowsHardeningGitHub
+    repositoryName: nuket/WindowsHardening
+    tagSource: 'manual'
+    tag: '$(Build.BuildNumber)'
+    title: 'Windows Hardening PDF Release ($(Build.BuildNumber))'
+    assets: |
+      *.pdf
 
 #     assets: WindowsHardening.pdf
 #     #action: 'create' # Options: create, edit, delete
