@@ -1,5 +1,6 @@
 = Windows and Chrome Hardening
 Max Vilimpoc (@vilimpoc)
+{build-number} {doctime}
 
 :build-badge: image:https://dev.azure.com/TheUpdateCompany/WindowsHardening/_apis/build/status/nuket.WindowsHardening%20Build%20PDF?branchName=master["Build Status"]
 

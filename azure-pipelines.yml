@@ -19,7 +19,7 @@ steps:
 - script: gem install asciidoctor-pdf --pre && asciidoctor-pdf -v
   displayName: 'gem install asciidoctor-pdf'
 
-- script: asciidoctor-pdf --out-file WindowsHardening-${BUILD_BUILDNUMBER}.pdf -a build-badge= -a allow-uri-read README.asciidoc
+- script: asciidoctor-pdf --out-file WindowsHardening-${BUILD_BUILDNUMBER}.pdf -a allow-uri-read -a build-badge= -a build-number=${BUILD_BUILDNUMBER} README.asciidoc
   displayName: 'Generate PDF file'
 
 - script: pwd && ls -lR && printenv
