@@ -24,7 +24,7 @@ steps:
 
 - task: PublishBuildArtifacts@1
   inputs:
-    pathToPublish: 'WindowsHardening-${Build.BuildNumber}.pdf'
+    pathToPublish: WindowsHardening*.pdf
     artifactName: 'WindowsHardening-${Build.BuildNumber}'
 
 # - task: PublishPipelineArtifact@0
