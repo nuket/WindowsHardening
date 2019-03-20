@@ -1,11 +1,15 @@
 = Windows and Chrome Hardening
-Max Vilimpoc (https://twitter.com/vilimpoc[@vilimpoc])
+Max Vilimpoc (@vilimpoc)
 
-image::https://dev.azure.com/TheUpdateCompany/WindowsHardening/_apis/build/status/nuket.WindowsHardening%20Build%20PDF?branchName=master["Build Status"]
+:build-badge: image:https://dev.azure.com/TheUpdateCompany/WindowsHardening/_apis/build/status/nuket.WindowsHardening%20Build%20PDF?branchName=master["Build Status"]
 
 :imagesdir: images
 
-A collection of tips and scripts to harden your Windows computer and Chrome browser against attackers.
+{build-badge}
+
+== Introduction
+
+This document contains a collection of tips and scripts to harden your Windows computer and Chrome browser against attackers.
 
 Unfortunately, both of these things need to be treated adversarially with a hardened security posture.
 
@@ -131,6 +135,8 @@ Also, these 3rd-party antivirus providers may increase your attack surface area 
 
 There have definitely been cases where antivirus vendors hooking into undocumented Windows kernel interfaces actually made a system less secure (which led to Microsoft introducing https://en.wikipedia.org/wiki/Kernel_Patch_Protection[PatchGuard]).
 
+<<<
+
 === Enable Secure Boot
 
 Secure Boot ensures that your computer is running only trusted, signed firmware from the moment it turns on to the moment that it hands control of the hardware over to the Windows operating system.
@@ -160,6 +166,8 @@ It would be good for everyone to require manufacturers to produce higher quality
 +
 image::security-processor-details.png[Security Processor Details]
 
+<<<
+
 === Hypervisor-Protected Code Integrity (HVCI)
 
 The Windows System Information program shows a few key settings that are security-relevant.
@@ -169,6 +177,8 @@ image::hvci-settings.png[System Information]
 * _Kernel DMA Protection_ prevents hijacks from malicious Thunderbolt devices, but requires an Intel processor with VT-d technology enabled (Virtualization Technology for Directed I/O).
 
 * _Virtualization-based security_ is controlled by the Core Isolation Memory Integrity settings.
+
+<<<
 
 === Enable BitLocker
 
@@ -186,6 +196,8 @@ I don't have screenshots of the process of activating it, but when enabling it, 
 It is a good idea to encrypt everything including empty space, unless you have a good reason not to or you're (re-)installing Windows on a previously-encrypted drive (in which case most of the drive is probably filled with mostly random data anyways).
 
 Make sure to save a copy of the BitLocker Recovery Key, or print a physical copy of it and put it in a safe place. (Yes, this means that someone ransacking your office could find it, but that requires physical access anyways.)
+
+<<<
 
 === Update UEFI Firmware / BIOS Firmware
 
@@ -313,6 +325,8 @@ As you can see from the Dell and Lenovo Release Notes, there are a ton of change
 
 Although some of these patches may be more important than others, it is recommended to apply them regularly.
 
+<<<
+
 === Check Spectre and Meltdown Fixes
 
 https://en.wikipedia.org/wiki/Spectre_(security_vulnerability)[Spectre] and https://en.wikipedia.org/wiki/Meltdown_(security_vulnerability)[Meltdown] are a category of hardware design flaws on Intel, AMD, and Arm processors that can lead to remotely-triggered exploits, information stealing, and so on.
@@ -338,7 +352,11 @@ Because they are hardware vulnerabilities and haven't yet been completely fixed 
 
 Kudos to https://support.dell.com[Dell] and https://pcsupport.lenovo.com/[Lenovo], whose engineers updated the firmware microcode for my 5+ year-old laptop and desktop machines to address these issues. Talk about _good support_!
 
+<<<
+
 == Hardening Chrome
+
+<<<
 
 === Blocking Third-Party Cookies
 
@@ -361,6 +379,8 @@ Here's how to disable these web tracking cookies:
 image::https://img.youtube.com/vi/EhsUcpivM_I/0.jpg[]
 
 Once the third-party cookies are blocked, the list of cookies per website will drop substantially.
+
+<<<
 
 == Contributors
 
