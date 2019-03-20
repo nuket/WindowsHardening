@@ -40,10 +40,9 @@ steps:
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
   inputs:
     gitHubConnection: WindowsHardeningGitHub
-    repositoryName: WindowsHardening
-    action: 'create'
-    target: '$(Build.SourceVersion)'
-    tagSource: 'auto'
+    repositoryName: nuket/WindowsHardening
+    tagSource: 'manual'
+    tag: '$(Build.BuildNumber)'
     title: 'Windows Hardening PDF Release ($(Build.BuildNumber))'
     assets: 'WindowsHardening-$(Build.BuildNumber).pdf'
 #     assets: WindowsHardening.pdf
