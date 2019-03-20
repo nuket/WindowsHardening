@@ -22,6 +22,11 @@ steps:
 - script: asciidoctor-pdf --out-file WindowsHardening-${BUILD_BUILDNUMBER}.pdf README.asciidoc && ls -lR && printenv
   displayName: 'Generate PDF file from README.asciidoc'
 
+- task: PublishPipelineArtifacts@0
+  inputs:
+    pathToPublish: 'WindowsHardening-$(Build.BuildNumber).pdf'
+    artifactName: 'WindowsHardening-$(Build.BuildNumber).zip'
+
 # Useful info, that.
 
 # - powershell: gci env:* | sort-object name | Format-Table -AutoSize | Out-File $env:BUILD_ARTIFACTSTAGINGDIRECTORY/environment-variables.txt
@@ -40,8 +45,8 @@ steps:
 #   inputs:
 #     pathToPublish: WindowsHardening.pdf
 #     artifactName: WindowsHardening.pdf
-#     #pathtoPublish: '$(Build.ArtifactStagingDirectory)' 
-#     #artifactName: 'drop' 
+#     #pathtoPublish: '$(Build.ArtifactStagingDirectory)'
+#     #artifactName: 'drop'
 #     #publishLocation: 'Container' # Options: container, filePath
 #     #targetPath: # Required when publishLocation == FilePath
 #     #parallel: false # Optional
@@ -54,7 +59,7 @@ steps:
 # Publish a local directory or file as a named artifact for the current pipeline.
 # - task: PublishPipelineArtifact@0
 #   inputs:
-#     #artifactName: 'drop' 
+#     #artifactName: 'drop'
 #     targetPath: WindowsHardening.pdf
 
 # GitHub Release
