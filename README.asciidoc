@@ -1,18 +1,26 @@
 = Windows and Chrome Hardening
+Max Vilimpoc (@vilimpoc)
+{build-number} {doctime}
 
-image::https://dev.azure.com/TheUpdateCompany/WindowsHardening/_apis/build/status/nuket.WindowsHardening%20Build%20PDF?branchName=master["Build Status"]
+:build-badge: image:https://dev.azure.com/TheUpdateCompany/WindowsHardening/_apis/build/status/nuket.WindowsHardening%20Build%20PDF?branchName=master["Build Status"]
 
 :imagesdir: images
 
-A collection of tips and scripts to harden your Windows computer and Chrome browser against attackers.
+{build-badge}
 
-Unfortunately, both of these things need to be treated adversarially with a hardened security posture.
+== Introduction
+
+This document contains a collection of tips and scripts to harden your Windows computer and Chrome browser against attackers.
+
+Unfortunately, both of these pieces of software need to be treated adversarially with a hardened security posture.
 
 Any tips and well-composed content that people would like to add to this document via issues + pull requests would be greatly appreciated!
 
-Or you can Direct Message suggestions to https://twitter.com/vilimpoc[@vilimpoc] or drop me an e-mail https://vilimpoc.org/contact.php[here].
+Or you can send suggestions via DM to https://twitter.com/vilimpoc[@vilimpoc] or drop me an e-mail https://vilimpoc.org/contact.php[here].
 
 == Audience
+
+This guide is intended for anyone who wants to tighten up their security posture and take up a position of security by default.
 
 This guide is written specifically with Windows 10 Version 1809 (October 2018 Update) in mind and will be updated as newer versions are released.
 
@@ -20,23 +28,45 @@ If you're not running the latest version of Windows 10 on your system, then you 
 
 Also, newer versions of Windows 10 tend to have better performance and lower UX latency, so why not update?
 
+<<<
+
 == Hardening Windows
 
-There are too many security-relevant settings to count in Windows, but here are a few that are easily configured.
+There are too many security-relevant settings to count in Windows, but the following pages describe a few easy changes that offer increased security to the average user.
+
+The topics in this document are ordered from least to most difficult to understand, such that the final items might be more in-depth than most readers would care to delve into.
+
+So, without further ado, let's get started.
+
+<<<
 
 === Create and Use a Standard User Account
 
-Windows uses "two" types of primary accounts, Administrator and Standard User.
+First and foremost, the biggest and simplest change the average user can make to the way they use their computers is to create and use a _Standard User Account_.
 
-_Administrator_ accounts are the ones that can do anything to your computer. They can install software, change firewall settings, delete any and all files, and make permanent changes to the system configuration that affect every user.
+Windows generally separates users into "two" types of accounts: Administrator and Standard User.footnote:[There are actually more types of accounts, but the primary types that are assigned to human users that actually interact with a computer, are these two types. macOS and Linux also follow the same general distinction.]
 
-It makes no sense to use an Administrator account for everything you do, and it's a shame that Microsoft _still_ defaults to creating Administrator accounts first when installing Windows. _This is like running with scissors._ (And, to be fair, Apple still does this too.)
+==== Administrators
 
-If your computer has only one account on it, then by default, Microsoft made this an Administrator account.
+_Administrator_ accounts can do anything to your computer.
 
-_Standard User_ accounts cannot make permanent or fundamental changes to the operating system that threaten a computer's ability to boot and run. They can't delete system files or access files from other users.
+They can install software, change firewall settings, delete any and all files, and make permanent changes to the system configuration that affect every user on the system.
+
+If you run malware while logged in as an Administrator, then that malware will have complete control over your computer and _all of its files_ and _all of its network connectivity_.
+
+It may be able to infest your system so thoroughly that only a clean install on a fully wiped system using a Secure Boot medium will allow you to use the system again.footnote:[And even then, against nation state-level bad actors, you might have to worry about threats persisting in system firmware.]
+
+// It makes no sense to use an Administrator account for everything you do, and it's a shame that Microsoft _still_ defaults to creating Administrator accounts first when installing Windows. _This is like running with scissors._ (And, to be fair, Apple still does this too.)
+
+// If your computer has only one account on it, then by default, Microsoft made this an Administrator account.
+
+==== Standard Users
+
+_Standard User_ accounts cannot make permanent or fundamental changes to the operating system that threaten a computer's ability to boot and run. Because they have limited rights, they can't delete system files or access files from other users.
 
 This type of account should be used for day to day work and add an extra layer of security against malware getting a deep hold in your system.
+
+==== Add A Standard User Account
 
 Obnoxiously, Microsoft makes it as hard as they possibly can to create a non-online, standard user account.
 
@@ -50,7 +80,7 @@ The account creation process is worded in such a way that it sounds like you're 
 
 image::add-user-2.png[Add User 2]
 
-No, I don't want to log in with a Microsoft account or create a new one that Microsoft gets to know about.
+No, I don't want to log in with a Microsoft account or create a new one that Microsoft has to know about.
 
 image::add-user-3.png[Add User 3]
 
@@ -66,6 +96,8 @@ Note that only the accounts created after the first account on a computer are ma
 
 image::add-user-5.png[Add User 5]
 
+<<<
+
 === Pump Up User Account Control
 
 User Account Control is what shows the full-screen pop-up window when you install new software or make changes in the Windows Control Panel or Settings app. It's gotten much less intrusive since Windows Vista.
@@ -77,6 +109,8 @@ What it does: Any time you want to do something potentially dangerous to the com
 Make sure this is set to "Always notify".
 
 image::user-account-control.png[User Account Control Panel]
+
+<<<
 
 === Remove Internet Explorer 11 (and other Optional Windows Features)
 
@@ -114,6 +148,8 @@ ____
 Does that sound like a home computer setup?
 * _Work Folders Client_ would be useful if I had a laptop that connected to a corporate network. But I don't, so it can go. Also, there are tons of alternative file syncing systems (Dropbox, Box, Google Drive, etc.) that have assumed this role in the modern workplace.
 
+<<<
+
 === Do Not Install Third-Party Antivirus
 
 Installing antivirus software like McAfee, Kaspersky, or Avira will cause your computer to slow down without necessarily providing better coverage than Windows Defender. (As it turns out, Windows Defender already chews up a significant amount of time scanning your system.)
@@ -121,6 +157,8 @@ Installing antivirus software like McAfee, Kaspersky, or Avira will cause your c
 Also, these 3rd-party antivirus providers may increase your attack surface area with more code, which is irregularly updated and possibly even faulty.
 
 There have definitely been cases where antivirus vendors hooking into undocumented Windows kernel interfaces actually made a system less secure (which led to Microsoft introducing https://en.wikipedia.org/wiki/Kernel_Patch_Protection[PatchGuard]).
+
+<<<
 
 === Enable Secure Boot
 
@@ -151,6 +189,8 @@ It would be good for everyone to require manufacturers to produce higher quality
 +
 image::security-processor-details.png[Security Processor Details]
 
+<<<
+
 === Hypervisor-Protected Code Integrity (HVCI)
 
 The Windows System Information program shows a few key settings that are security-relevant.
@@ -160,6 +200,8 @@ image::hvci-settings.png[System Information]
 * _Kernel DMA Protection_ prevents hijacks from malicious Thunderbolt devices, but requires an Intel processor with VT-d technology enabled (Virtualization Technology for Directed I/O).
 
 * _Virtualization-based security_ is controlled by the Core Isolation Memory Integrity settings.
+
+<<<
 
 === Enable BitLocker
 
@@ -177,6 +219,8 @@ I don't have screenshots of the process of activating it, but when enabling it, 
 It is a good idea to encrypt everything including empty space, unless you have a good reason not to or you're (re-)installing Windows on a previously-encrypted drive (in which case most of the drive is probably filled with mostly random data anyways).
 
 Make sure to save a copy of the BitLocker Recovery Key, or print a physical copy of it and put it in a safe place. (Yes, this means that someone ransacking your office could find it, but that requires physical access anyways.)
+
+<<<
 
 === Update UEFI Firmware / BIOS Firmware
 
@@ -304,6 +348,8 @@ As you can see from the Dell and Lenovo Release Notes, there are a ton of change
 
 Although some of these patches may be more important than others, it is recommended to apply them regularly.
 
+<<<
+
 === Check Spectre and Meltdown Fixes
 
 https://en.wikipedia.org/wiki/Spectre_(security_vulnerability)[Spectre] and https://en.wikipedia.org/wiki/Meltdown_(security_vulnerability)[Meltdown] are a category of hardware design flaws on Intel, AMD, and Arm processors that can lead to remotely-triggered exploits, information stealing, and so on.
@@ -329,9 +375,19 @@ Because they are hardware vulnerabilities and haven't yet been completely fixed 
 
 Kudos to https://support.dell.com[Dell] and https://pcsupport.lenovo.com/[Lenovo], whose engineers updated the firmware microcode for my 5+ year-old laptop and desktop machines to address these issues. Talk about _good support_!
 
+<<<
+
 == Hardening Chrome
 
+As it turns out, having a browser built by the world's largest advertising company may not provide the most end-user privacy.
+
+The following tips are meant to provide a safer alternative to the default settings and reduce the online footprint each person leaves behind.
+
+<<<
+
 === Blocking Third-Party Cookies
+
+:imagesdir: videos
 
 Third-party cookies follow you around the internet. These are the tiny pieces of data that expose you as a targetable, profiled individual online.
 
@@ -342,16 +398,20 @@ These are how Amazon, Google, Facebook, and other advertisers know when to show 
 Let's say you visit Buzzfeed, at least a dozen ad agencies will find out exactly what you did there:
 
 [link=https://youtu.be/37w5Iu6MLgM]
-image::https://img.youtube.com/vi/37w5Iu6MLgM/0.jpg[]
+image::blocked-cookies.png[]
 
 This happens on every single website you visit, so multiply the number of cookies you're generating by a hundred.
 
 Here's how to disable these web tracking cookies:
 
 [link=https://youtu.be/EhsUcpivM_I]
-image::https://img.youtube.com/vi/EhsUcpivM_I/0.jpg[]
+image::block-third-party-cookies.png[]
 
 Once the third-party cookies are blocked, the list of cookies per website will drop substantially.
+
+:imagesdir: images
+
+<<<
 
 == Contributors
 

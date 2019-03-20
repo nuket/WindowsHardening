@@ -19,8 +19,20 @@ steps:
 - script: gem install asciidoctor-pdf --pre && asciidoctor-pdf -v
   displayName: 'gem install asciidoctor-pdf'
 
-- script: asciidoctor-pdf --out-file WindowsHardening-${BUILD_BUILDNUMBER}.pdf README.asciidoc && ls -lR && printenv
-  displayName: 'Generate PDF file from README.asciidoc'
+- script: asciidoctor-pdf --out-file WindowsHardening-${BUILD_BUILDNUMBER}.pdf -a allow-uri-read -a build-badge= -a build-number=${BUILD_BUILDNUMBER} README.asciidoc
+  displayName: 'Generate PDF file'
+
+- script: pwd && ls -lR && printenv
+  displayName: 'Print build environment'
+
+# - task: PublishBuildArtifacts@1
+#   inputs:
+#     pathToPublish: 'WindowsHardening*.pdf'
+#     artifactName: 'WindowsHardening-${Build.BuildNumber}'
+
+- task: PublishPipelineArtifact@0
+  inputs:
+    artifactName: 'WindowsHardening-$(Build.BuildNumber)'
 
 # Useful info, that.
 
@@ -40,8 +52,8 @@ steps:
 #   inputs:
 #     pathToPublish: WindowsHardening.pdf
 #     artifactName: WindowsHardening.pdf
-#     #pathtoPublish: '$(Build.ArtifactStagingDirectory)' 
-#     #artifactName: 'drop' 
+#     #pathtoPublish: '$(Build.ArtifactStagingDirectory)'
+#     #artifactName: 'drop'
 #     #publishLocation: 'Container' # Options: container, filePath
 #     #targetPath: # Required when publishLocation == FilePath
 #     #parallel: false # Optional
@@ -54,7 +66,7 @@ steps:
 # Publish a local directory or file as a named artifact for the current pipeline.
 # - task: PublishPipelineArtifact@0
 #   inputs:
-#     #artifactName: 'drop' 
+#     #artifactName: 'drop'
 #     targetPath: WindowsHardening.pdf
 
 # GitHub Release
