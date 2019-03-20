@@ -19,18 +19,21 @@ steps:
 - script: gem install asciidoctor-pdf --pre && asciidoctor-pdf -v
   displayName: 'gem install asciidoctor-pdf'
 
+- script: pwd
+  displayName: 'pwd'
+
 - script: asciidoctor-pdf --out-file WindowsHardening-${BUILD_BUILDNUMBER}.pdf README.asciidoc && ls -lR && printenv
   displayName: 'Generate PDF file'
 
-- task: PublishBuildArtifacts@1
-  inputs:
-    pathToPublish: WindowsHardening*.pdf
-    artifactName: 'WindowsHardening-${Build.BuildNumber}'
-
-# - task: PublishPipelineArtifact@0
+# - task: PublishBuildArtifacts@1
 #   inputs:
-#     pathToPublish: 'WindowsHardening-$(Build.BuildNumber).pdf'
-#     artifactName: 'WindowsHardening-$(Build.BuildNumber)'
+#     pathToPublish: 'WindowsHardening*.pdf'
+#     artifactName: 'WindowsHardening-${Build.BuildNumber}'
+
+- task: PublishPipelineArtifact@0
+  inputs:
+    pathToPublish: 'WindowsHardening-$(Build.BuildNumber).pdf'
+    # artifactName: 'WindowsHardening-$(Build.BuildNumber)'
 
 # Useful info, that.
 
