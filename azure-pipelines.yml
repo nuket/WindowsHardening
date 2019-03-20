@@ -43,7 +43,8 @@ steps:
     repositoryName: WindowsHardening
     action: 'create'
     target: '$(Build.SourceVersion)'
-    tagSource: 'auto'
+    tagSource: 'manual'
+    tag: '$(Build.BuildNumber)'
     title: 'Windows Hardening PDF Release ($(Build.BuildNumber))'
     assets: 'WindowsHardening-$(Build.BuildNumber).pdf'
 #     assets: WindowsHardening.pdf
