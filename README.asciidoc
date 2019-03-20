@@ -1,4 +1,5 @@
 = Windows and Chrome Hardening
+Max Vilimpoc (https://twitter.com/vilimpoc[@vilimpoc])
 
 image::https://dev.azure.com/TheUpdateCompany/WindowsHardening/_apis/build/status/nuket.WindowsHardening%20Build%20PDF?branchName=master["Build Status"]
 
@@ -82,6 +83,8 @@ Make sure this is set to "Always notify".
 
 image::user-account-control.png[User Account Control Panel]
 
+<<<
+
 === Remove Internet Explorer 11 (and other Optional Windows Features)
 
 If you're not using a computer with corporate websites (the crappy internal websites that companies never pay to upgrade, thereby dragging down the whole web, and inflicting uncounted suffering on the worker bees), then it makes sense to completely remove Internet Explorer from Windows.
@@ -117,6 +120,8 @@ ____
 +
 Does that sound like a home computer setup?
 * _Work Folders Client_ would be useful if I had a laptop that connected to a corporate network. But I don't, so it can go. Also, there are tons of alternative file syncing systems (Dropbox, Box, Google Drive, etc.) that have assumed this role in the modern workplace.
+
+<<<
 
 === Do Not Install Third-Party Antivirus
 
