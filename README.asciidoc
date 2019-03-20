@@ -24,6 +24,8 @@ Also, newer versions of Windows 10 tend to have better performance and lower UX 
 
 There are too many security-relevant settings to count in Windows, but here are a few that are easily configured.
 
+<<<
+
 === Create and Use a Standard User Account
 
 Windows uses "two" types of primary accounts, Administrator and Standard User.
@@ -65,6 +67,8 @@ Once the Standard User account is created, its settings can be seen by clicking 
 Note that only the accounts created after the first account on a computer are made __Standard User__s.
 
 image::add-user-5.png[Add User 5]
+
+<<<
 
 === Pump Up User Account Control
 
