@@ -411,6 +411,56 @@ Once the third-party cookies are blocked, the list of cookies per website will d
 
 :imagesdir: images
 
+// <<<
+//
+// === Using Pass__phrases__ Instead Of Pass__words__
+//
+// <<<
+//
+// === Using A Password Manager
+//
+// <<<
+//
+// === Using A Hardware Key
+
+<<<
+
+=== Faking Answers To Security Questions
+
+There is _no good reason_ to use real, personal information to answer security questions online.
+
+Let's say you run into the following three questions:
+
+. What is the name of city you were born in?
+. What was the name of your first pet?
+. What is the your favorite color?
+
+What you can do here, if you are using a password manager, is invent new answers for each website that requires them. Make sure you write these answers down.
+
+The answers don't even have to match the subject matter of the question.
+
+It is possible to use answers that are fully decorrelated from the questions being asked, and in fact this makes it harder for someone to guess these answers.
+
+So you might have answers like:
+
+. Mashed Potatoes
+. Greenwood Street
+. Socket Wrench
+
+Because you're using answers that don't actually relate to the questions being asked, guessing the answer becomes harder since it cannot be looked up in a list of colors or a list of common animal names, for instance.
+
+And, because none of the systems asking for security questions even know the meaning of what you're talking about, they should let those answers through.
+
+Under no circumstances should you ever use your real birthday or mother's maiden name as the answer to a security question.
+
+Remember, these questions are designed to give you a recovery mechanism for a single website, in case your account has been hacked.
+
+So the idea is to invent a unique set of keywords that will allow you reset access to that website and _that website alone_, without letting an adversary use those keywords to let them gain access to any other website where you have an account.
+
+// <<<
+//
+// === Using Email Suffixes To Track Leaky Websites
+
 <<<
 
 == Contributors
