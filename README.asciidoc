@@ -2,11 +2,31 @@
 Max Vilimpoc (@vilimpoc)
 {build-number} {doctime}
 
+:last-update-label!:
+
 :build-badge: image:https://dev.azure.com/TheUpdateCompany/WindowsHardening/_apis/build/status/nuket.WindowsHardening%20Build%20PDF?branchName=master["Build Status"]
 
 :imagesdir: images
 
 {build-badge}
+
+== 2026 Update: This Document Is A Grave
+
+[CAUTION]
+====
+When I first wrote this document, Windows hadn't yet turned into the constant
+surveillance system it is today.
+
+I no longer believe it's very useful to attempt to harden a system, when the
+entire core of the system is being rewritten to profile the user and send data
+to an advertising backend.
+
+The operating system creates exceptions for itself, to do things that are not
+in the interests of the user and there is no way to even create local user
+accounts anymore.
+
+I've since moved on to Linux, which has its own set of issues.
+====
 
 == Introduction
 
@@ -411,17 +431,35 @@ Once the third-party cookies are blocked, the list of cookies per website will d
 
 :imagesdir: images
 
-// <<<
-//
-// === Using Pass__phrases__ Instead Of Pass__words__
-//
-// <<<
-//
-// === Using A Password Manager
-//
-// <<<
-//
-// === Using A Hardware Key
+== Hardening Edge
+
+Microsoft's browser leaks information like a sieve as well.
+
+=== Set New Tab To Something Else
+
+The default New Tab in Edge is a pile of hot garbage.
+
+* It's like a mainline of click-bait and advertisements with little-to-negative relevant value.
+
+* It actually wastes bandwidth, time, and power on a portable device.
+
+image::new-tab-hot-garbage-1.png['The horror... the horror.']
+
+Here's how to change it:
+
+image::new-tab-set-registry-key-1.png[]
+
+The fun part is, Microsoft _had_ and answer on their support website and then removed it, because... reasons.
+
+They were like (https://answers.microsoft.com/en-us/microsoftedge/forum/all/how-to-set-up-a-different-new-tab/ab386ec9-8416-4892-806f-ec6604ff9a39):
+
+image::new-tab-removed-link-1.png[]
+
+Then, oh noes, it can't be found (https://answers.microsoft.com/en-us/microsoftedge/forum/all/how-to-set-up-a-different-new-tab/ab386ec9-8416-4892-806f-ec6604ff9a39)!
+
+image::new-tab-removed-link-2.png[]
+
+// https://admx.help/?Category=EdgeChromium&Policy=Microsoft.Policies.Edge::NewTabPageSetFeedType&Language=de-de
 
 <<<
 
@@ -457,24 +495,9 @@ Remember, these questions are designed to give you a recovery mechanism for a si
 
 So the idea is to invent a unique set of keywords that will allow you reset access to that website and _that website alone_, without letting an adversary use those keywords to let them gain access to any other website where you have an account.
 
-// <<<
-//
-// === Using Email Suffixes To Track Leaky Websites
-
 <<<
 
 == Contributors
 
 Max Vilimpoc (https://twitter.com/vilimpoc[@vilimpoc])
 
-// = Other Ideas (for Later Writeup)
-//
-// Windows
-// * Using a VPN (Virtual Private Network)
-// * Using Folder Security
-// * When installing drivers, uncheck "Always accept drivers from X Corp.", as driver signing certificates have been stolen from companies in the past.
-//
-// Chrome
-// Using Multiple User Profiles
-// Ad Blockers
-// JS Blockers
